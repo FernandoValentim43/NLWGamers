@@ -6,9 +6,12 @@ function App() {
     <div className="max-w-[1344px] mx-auto flex my-20 flex-col items-center">
       <img src={logoImg} />
       
-      <h1>Seu Duo esta aqui</h1>
+      <h1 className="text-6xl text-white font-black mt-20">Seu <span className="bg-nlw-gradient bg-clip-text">Duo</span> esta aqui</h1>
     </div>
   )
 }
 
 export default App;
+
+
+
