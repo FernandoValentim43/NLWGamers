@@ -4,7 +4,7 @@
   <img alt="Logo" src="https://global-uploads.webflow.com/61d83a2ebb0ae01ab96e841a/630ced17a99fbd99b6169b52_Logo-NLW-eSports.svg" width="25%">
 </h1>
 
-<p>Project built during the 'Next Level Week - Esports' crash course from <a href="https://www.rocketseat.com.br/">Rocketseat</a></p>
+<p>Project built during the <strong>Next Level Week - Esports</strong> crash course from <a href="https://www.rocketseat.com.br/">Rocketseat</a></p>
 
 
 
