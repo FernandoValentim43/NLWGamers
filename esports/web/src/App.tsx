@@ -1,10 +1,29 @@
 import "./styles/main.css";
+import { useEffect,useState } from "react";
 
 import { MagnifyingGlassPlus } from "phosphor-react";
 
 import logoImg from "./assets/logo.png";
 import { GameBanner } from "./components/GameBanner";
+
+interface Game {
+  id: string;
+  title: string;
+  bannerUrl: string;
+  _count: { 
+    ads: number;
+  }
+}
 function App() {
+  const [games, setGames] = useState<Game[]>([]);
+  useEffect(() => {
+    fetch('http://localhost:3333/games').then(response => response.json())
+    .then(data => {
+      setGames(data)
+    })
+  }, [])
+
+
   return (
     <div className="max-w-[1000px] mx-auto flex  my-8 flex-col items-center ">
       <img src={logoImg} width="250"  />
@@ -12,13 +31,13 @@ function App() {
       <h1 className="text-5xl text-white font-black mt-6 ">Seu<span className="text-transparent bg-nlw-gradient bg-clip-text"> Duo </span>esta aqui.</h1>
 
       <div className="grid grid-cols-6 gap-6 mt-8"  style={{ height: "190px"}}>
-       
-        <GameBanner bannerUrl="/image 1.png" title="League of Legends"  adsCount={1}  />
-        <GameBanner bannerUrl="/image 2.png" title="Dota 2"  adsCount={1}  />
-        <GameBanner bannerUrl="/image 3.png" title="CS: GO"  adsCount={3}  />
-        <GameBanner bannerUrl="/image 4.png" title="Apex Legends"  adsCount={3}  />
-        <GameBanner bannerUrl="/image 5.png" title="Fortnite"  adsCount={1}  />
-        <GameBanner bannerUrl="/image 6.png" title="World of War Craft"  adsCount={2}  />
+       {games.map(game => {
+        return (
+          <GameBanner bannerUrl={game.bannerUrl} title={game.title}  adsCount={game._count.ads}  />
+        )
+       } )}
+        
+        
        
       </div>
 
