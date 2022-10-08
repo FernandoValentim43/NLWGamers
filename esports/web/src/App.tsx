@@ -1,10 +1,12 @@
 import "./styles/main.css";
 import { useEffect,useState } from "react";
 
-import { MagnifyingGlassPlus } from "phosphor-react";
+
+import * as Dialog from '@radix-ui/react-dialog';
 
 import logoImg from "./assets/logo.png";
 import { GameBanner } from "./components/GameBanner";
+import { AdBanner } from "./components/Ad"
 
 interface Game {
   id: string;
@@ -33,31 +35,30 @@ function App() {
       <div className="grid grid-cols-6 gap-6 mt-8"  style={{ height: "190px"}}>
        {games.map(game => {
         return (
-          <GameBanner bannerUrl={game.bannerUrl} title={game.title}  adsCount={game._count.ads}  />
+          <GameBanner
+          key={game.id}
+           bannerUrl={game.bannerUrl} title={game.title}  adsCount={game._count.ads}  />
         )
        } )}
         
+      </div>
+
+      <Dialog.Root>
+        <AdBanner/>
+        <Dialog.Portal>
+          <Dialog.Overlay className="bg-black/60 inset-0 fixed">
+              <Dialog.Content className="bg-[#2A2634] py-8 px-10 text-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded w-[480px]">
+                <Dialog.Title>Publique um anúncio</Dialog.Title>
+
+                <Dialog.Content>
+                  
+                </Dialog.Content>
+              </Dialog.Content>
+          </Dialog.Overlay>
+        </Dialog.Portal>
         
-       
-      </div>
+      </Dialog.Root>
 
-      <div className="pt-1 bg-nlw-gradient self-stretch rounded-lg mt-6 overflow-hidden">
-        <div className="bg-[#2A2634] px-8 py-4 flex justify-between items-center">
-          <div>
-            <strong className="text-2xl text-white font-black block">
-              Não encontrou seu duo?
-            </strong>
-            <span className="text-zinc-400 block">
-              Publique um anúncio para encontrar novos players!
-            </span>
-          </div>
-
-          <button className="py-3 px-4 bg-violet-500 text-white rounded hover:bg-violet-600 flex items-center gap-3">
-            <MagnifyingGlassPlus size={24} />
-            Publicar anúncio
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
